@@ -156,6 +156,21 @@
                 })
             })
         });
+
+        //需求: 获取登录的用户的个人信息并显示.
+            //  1.一进到首页,就应该发 送ajax请求,获取登录的用户的信息
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:8080/admin/user/info',
+                success: function (backData) {
+                    if (backData.code == 200) {
+                        // ​2.把对应的信息显示在页面的对象标签上.
+                        $('.user_info>span').html('欢迎&nbsp;&nbsp;'+backData.data.nickname);
+                        $('.user_info>img').attr('src',backData.data.userPic);
+                        $('.user_center_link>img').attr('src',backData.data.userPic);
+                    }
+                }
+            });    
     </script>
 </body>
 
